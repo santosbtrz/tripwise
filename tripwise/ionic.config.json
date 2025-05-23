@@ -1,0 +1,7 @@
+{
+  "name": "tripwise",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
