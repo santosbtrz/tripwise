@@ -1,35 +1,59 @@
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
 <ion-content [fullscreen]="true">
   <div class="voltar">
-    <button class="voltar-btn">
-      <img src="voltar.png" alt="">
-    </button>
+    <a href="/landing"><img src="../../assets/voltar.png" alt="" /></a>
   </div>
 
   <div class="logo-ctn">
-    <img src="../../assets/Logo.png" class="logo-img" alt="">
-     <h1 class="subtitle">seu planejador de viagens em grupo!</h1>
+    <img src="../../assets/Logo.png" class="logo-img" alt="" />
+    <h1 class="subtitle">seu planejador de viagens em grupo!</h1>
   </div>
-  
 
   <div class="cadastro">
     <h2 class="signup-title">Cadastro</h2>
   </div>
 
   <div class="inputs">
-    <input type="text" placeholder="Digite seu nome completo" class="input-field">
-    <input type="date" placeholder="" class="input-field">
-    <input type="tel" placeholder="(xx) xxxxx-xxxx" class="input-field">
-    <input type="email" placeholder="Digite seu e-mail" class="input-field">
-    <input type="number" placeholder="Digite seu CPF (somente números)" class="input-field">
-    <input type="password" placeholder="Digite sua senha" class="input-field">
-    <input type="password" placeholder="Confirme sua senha" class="input-field">
+    <div class="input-group">
+      <input type="text" id="nome" placeholder=" " required />
+      <label for="nome">NOME COMPLETO</label>
+    </div>
+
+    <div class="input-group">
+      <input type="date" id="nascimento" placeholder=" " required />
+      <label for="nascimento">DATA DE NASCIMENTO</label>
+    </div>
+
+    <div class="input-group">
+      <input type="tel" id="telefone" placeholder=" " required />
+      <label for="telefone">TELEFONE</label>
+    </div>
+
+    <div class="input-group">
+      <input type="email" id="email" placeholder=" " required />
+      <label for="email">E-MAIL</label>
+    </div>
+
+    <div class="input-group">
+      <input type="number" id="cpf" placeholder=" " required />
+      <label for="cpf">CPF</label>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="senha" placeholder=" " required />
+      <label for="senha">SENHA</label>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="confirmaSenha" placeholder=" " required />
+      <label for="confirmaSenha">CONFIRMAR SENHA</label>
+    </div>
   </div>
 
   <div class="signup-ctn">
-    <button class="signup-button">
-      Cadastre-se
-    </button>
+    <button class="signup-button">Cadastre-se</button>
   </div>
 </ion-content>

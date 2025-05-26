@@ -1,83 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap");
 
 * {
-    font-family: "Staatliches", sans-serif;
+  font-family: "Staatliches", sans-serif;
 }
 
 // voltar
 
 .voltar {
-    height: 4rem;
+  width: 35px;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
-// logo 
+// logo
 
 .logo-img {
-    width: 250px;
+  width: 150px;
 }
 
 .subtitle {
-    width: 80%;
-    font-size: 16px;
-    color: #0FC3E8;
-    text-align: center;
+  width: 80%;
+  font-size: 16px;
+  color: #0fc3e8;
+  text-align: center;
 }
 
 .logo-ctn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 // cadastro
 
 .main-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-        width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .cadastro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-title {
-    text-decoration: underline;
-    color: #0194BE;
-    margin-top: 2rem;
+  text-decoration: underline;
+  color: #0194be;
+  margin-top: 1rem;
+  font-size: 22px;
+  margin-bottom: 1rem;
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-
+/* .inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .inputs input {
-    width: 80%;
-    padding: 10px;
-    height: 3rem;
-    border-radius: 10px;
-    border: 2px solid #0194BE;
-    color: #0195bea3;
-
+  width: 80%;
+  padding: 10px;
+  height: 3rem;
+  border-radius: 10px;
+  border: 2px solid #0194be;
+  color: #0195bea3;
+  background-color: transparent;
 }
 
 ::placeholder {
-    color: #0195bea3;
+  color: #0195bea3;
 }
 
 input:focus-visible {
-    outline-color: #1c5665;
+  outline-color: #1c5665;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -86,24 +90,64 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 1;
 }
 
+*/
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.input-group input {
+  font-family: "Sulphur Point", sans-serif;
+  width: 100%;
+  padding: 18px 12px 18px;
+  font-size: 16px;
+  border: 2px solid #00aee7;
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 174, 231, 0.6);
+  background: none;
+  color: #00ade7b4;
+}
+
+.input-group label {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  background-color: white;
+  padding: 0 6px;
+  font-size: 16px;
+  color: #00aee7;
+  font-weight: bold;
+  letter-spacing: 1px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 14px;
+}
 
 // cadastro
 
 .signup-ctn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .signup-button {
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 20px;
-    border: 2px solid #0FC3E8;
-    cursor: pointer;
-    background-color: transparent;
-    color: #0FC3E8;
-    text-decoration: underline;
-    width: 70%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: 2px solid #0fc3e8;
+  cursor: pointer;
+  background-color: transparent;
+  color: #0fc3e8;
+  width: 70%;
 }
