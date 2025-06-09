@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="voltar">
-    <a href="/landing"><img src="../../assets/voltar.png" alt="" /></a>
+    <a href="/landing"><img src="../../assets/voltar.png" alt="Voltar" /></a>
   </div>
 
   <div class="main-container">
@@ -8,14 +8,31 @@
     <h1 class="subtitle">seu planejador de viagens em grupo!</h1>
   </div>
 
-  <div class="inputs">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="inputs" novalidate>
+      <div *ngIf="errorMessage" class="error-message" role="alert" aria-live="assertive">
+    {{ errorMessage }}
+  </div>
     <div class="input-group">
-      <input type="email" id="email" placeholder=" " required />
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder=" "
+        required
+        autocomplete="email"
+      />
       <label for="email">E-MAIL</label>
     </div>
 
     <div class="input-group">
-      <input type="password" id="senha" placeholder=" " required />
+      <input
+        type="password"
+        id="senha"
+        formControlName="senha"
+        placeholder=" "
+        required
+        autocomplete="current-password"
+      />
       <label for="senha">SENHA</label>
       <div class="forgot-pw">
         <a href="/reset-password">Esqueceu a senha?</a>
@@ -23,9 +40,10 @@
     </div>
 
     <div class="login-signup">
-      <button onclick="location.href='/signup'" class="signup-button">
-        Entrar
-      </button>
+<button type="submit" [disabled]="!loginForm.get('email')?.value || !loginForm.get('senha')?.value" class="signup-button">
+  Entrar
+</button>
+
     </div>
-  </div>
+  </form>
 </ion-content>

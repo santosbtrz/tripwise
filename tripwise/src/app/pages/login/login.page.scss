@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  height: 65%;
+  height: 60%;
 }
 
 .logo-img {
@@ -105,4 +105,11 @@
 
 .forgot-pw a {
   color: #00aee7;
+}
+
+
+.error-message {
+  color: red;
+  margin: 12px 0;
+  text-align: center;
 }

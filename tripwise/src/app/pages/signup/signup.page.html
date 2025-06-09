@@ -2,6 +2,7 @@
   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   rel="stylesheet"
 />
+
 <ion-content [fullscreen]="true">
   <div class="voltar">
     <a href="/landing"><img src="../../assets/voltar.png" alt="" /></a>
@@ -18,42 +19,42 @@
 
   <div class="inputs">
     <div class="input-group">
-      <input type="text" id="nome" placeholder=" " required />
+      <input type="text" id="nome" placeholder=" " required [(ngModel)]="nome" />
       <label for="nome">NOME COMPLETO</label>
     </div>
 
     <div class="input-group">
-      <input type="date" id="nascimento" placeholder=" " required />
+      <input type="date" id="nascimento" placeholder=" " required [(ngModel)]="nascimento" />
       <label for="nascimento">DATA DE NASCIMENTO</label>
     </div>
 
     <div class="input-group">
-      <input type="tel" id="telefone" placeholder=" " required />
+      <input type="tel" id="telefone" placeholder=" " required [(ngModel)]="telefone" (input)="formatarTelefone()" />
       <label for="telefone">TELEFONE</label>
     </div>
 
     <div class="input-group">
-      <input type="email" id="email" placeholder=" " required />
+      <input type="email" id="email" placeholder=" " required [(ngModel)]="email" />
       <label for="email">E-MAIL</label>
     </div>
 
     <div class="input-group">
-      <input type="number" id="cpf" placeholder=" " required />
+      <input type="text" id="cpf" placeholder=" " required [(ngModel)]="cpf" (input)="formatarCPF()" />
       <label for="cpf">CPF</label>
     </div>
 
     <div class="input-group">
-      <input type="password" id="senha" placeholder=" " required />
+      <input type="password" id="senha" placeholder=" " required [(ngModel)]="senha" />
       <label for="senha">SENHA</label>
     </div>
 
     <div class="input-group">
-      <input type="password" id="confirmaSenha" placeholder=" " required />
+      <input type="password" id="confirmaSenha" placeholder=" " required [(ngModel)]="confirmaSenha" />
       <label for="confirmaSenha">CONFIRMAR SENHA</label>
     </div>
   </div>
 
   <div class="signup-ctn">
-    <button class="signup-button">Cadastre-se</button>
+    <button class="signup-button" (click)="cadastrar()">Cadastre-se</button>
   </div>
 </ion-content>

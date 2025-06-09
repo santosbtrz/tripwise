@@ -1,20 +1,47 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase-config';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [CommonModule, IonicModule, ReactiveFormsModule],
 })
 export class LoginPage implements OnInit {
+  loginForm: FormGroup;
+  errorMessage = '';
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
+  ngOnInit() {}
+
+  async login() {
+    this.errorMessage = '';
+    const email = this.loginForm.value.email;
+    const senha = this.loginForm.value.senha;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, senha);
+      this.router.navigate(['/inicio']);
+    } catch (error: any) {
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        this.errorMessage = 'Email ou senha incorretos.';
+      } else if (error.code === 'auth/invalid-email') {
+        this.errorMessage = 'Email inválido.';
+      } else {
+        this.errorMessage = 'Erro ao fazer login. Tente novamente.';
+      }
+    }
+  }
 }
