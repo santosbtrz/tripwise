@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+  font-family: "Staatliches", sans-serif;
+}
+
+.header {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+.config, .notification {
+    width: 40px;
+}
+
+.bottom-header p {
+    font-size: 22px;
+    margin-top: 1rem;
+    color: #0194BE;
+    letter-spacing: 2px;
+}
+
+// PRINCIPAL
+
+.main {
+    background-color: #CFFAFF;
+    height: 100%;
+    padding-top: .5rem;
+}
+
+.main h1 {
+    display: flex;
+    justify-content: center;
+    color: #0194BE;
+    text-decoration: underline;
+}
+
+// FORMS 
+
+.form {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}   
+
+.form label {
+    color: #0194BE;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    margin-left: .5rem;
+    font-size: 18px;
+
+}
+
+.form input {
+  width: 100%;
+  padding: 18px 12px 18px;
+  font-size: 14px;
+  border: 3px solid #0194BE;
+  border-radius: 12px;
+  outline: none;
+  background: none;
+  color: #00ade7b4;
+  margin-top: .5rem;
+  letter-spacing: 1px;
+}
+
+::placeholder {
+  color: #0195bea3;
+}
+
+.destino {
+    margin-top: 2rem;
+}
+
+.destino-datas {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.destino-datas input {
+    text-align: center;
+    font-size: 10px;
+    gap: 1rem;
+}
+
+#data-ida, #data-volta {
+    display: flex;
+    gap: .5rem;
+}
+
+.orcamento-ctn {
+    margin-top: 2rem;
+}
+
+
+.container {
+    font-size: 14px !important;
+    text-decoration: none !important;
+}
+
+.container input {
+    width: auto;
+    margin-right: .5rem;
+    
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.gerar-viagem {
+    background-color: #0194BE;
+    color: #CFFAFF;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 70%;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+hr {
+  height: 1.5px;
+  width: 50%;
+  background: #0194BE;
+  display: block;
+  font-size: 2em;
+  opacity: 1;
+  visibility: visible;
+}
+
+a {
+    color: #0194BE;
+    font-size: 18px;
+}

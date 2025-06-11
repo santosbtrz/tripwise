@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+  font-family: "Staatliches", sans-serif;
+}
+
+.header {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+.config, .notification {
+    width: 40px;
+}
+
+.bottom-header p {
+    font-size: 22px;
+    margin-top: 1rem;
+    color: #0194BE;
+    letter-spacing: 2px;
+}
+
+// PRINCIPAL
+
+.main {
+    background-color: #CFFAFF;
+}
