@@ -36,5 +36,9 @@ export const routes: Routes = [
     path: 'criar-viagem',
     loadComponent: () => import('./pages/criar-viagem/criar-viagem.page').then( m => m.CriarViagemPage)
   },
+  {
+    path: 'viagem-criada',
+    loadComponent: () => import('./pages/viagem-criada/viagem-criada.page').then( m => m.ViagemCriadaPage)
+  },
 
 ];

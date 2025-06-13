@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+  font-family: "Staatliches", sans-serif;
+}
+ 
+// header
+
+.header {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+.config, .notification {
+    width: 35px;
+}
+
+.bottom-header p {
+    font-size: 22px;
+    margin-top: 1rem;
+    color: #0194BE;
+    letter-spacing: 2px;
+}
+
+// main 
+
+.main {
+    background-color: #CFFAFF;
+    padding-top: .5rem;
+}
+
+.viagem-criada {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.viagem-criada h1 {
+    margin: 0;
+    text-decoration: underline;
+    font-size: 30px;
+    color: #0194BE;
+    letter-spacing: 1px;
+}
+
+.viagem-criada h2 {
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #0194BE;
+    opacity: 0.7;
+}

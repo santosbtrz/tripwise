@@ -46,18 +46,20 @@
 
     <div class="orcamento-ctn">
       <label for="orcamento">Orçamento</label>
-      <input type="text" id="viagem" placeholder="Qual seu orçamento para essa viagem? (opcional)">
-      <label for="orcamento-check" class="container">
-        <input type="checkbox" id="orcamento-check">
-        Ocultar orçamento para o restante do grupo
-      </label>
+      <input type="text" id="viagem" ioninput="formatarMoeda(this)" placeholder="Qual seu orçamento para essa viagem? (opcional)" >
+      <div class="checkbox-ctn">
+        <label for="orcamento-check" class="container">
+          <input type="checkbox" id="orcamento-check">
+          Ocultar orçamento para o restante do grupo
+        </label>
+      </div>
     </div>
   </div>
   
   <div class="buttons">
     <button class="gerar-viagem">Gerar código de grupo</button>
     <hr>
-    <a href="#">Cancelar</a>
+    <a href="/inicio">Cancelar</a>
   </div>
   
 </div>

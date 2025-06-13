@@ -24,7 +24,7 @@
 }
 
 .config, .notification {
-    width: 40px;
+    width: 35px;
 }
 
 .bottom-header p {
@@ -38,7 +38,6 @@
 
 .main {
     background-color: #CFFAFF;
-    height: 100%;
     padding-top: .5rem;
 }
 
@@ -110,12 +109,17 @@
 .container {
     font-size: 14px !important;
     text-decoration: none !important;
+    margin-top: 1rem;
 }
 
-.container input {
-    width: auto;
-    margin-right: .5rem;
-    
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right: .5rem; 
+    width: auto !important;
+}
+
+.checkbox-ctn {
+    margin-top: 1rem;
 }
 
 .buttons {
@@ -124,6 +128,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    padding-bottom: 1rem;
 }
 
 .gerar-viagem {
@@ -151,3 +156,4 @@ a {
     color: #0194BE;
     font-size: 18px;
 }
+

@@ -56,5 +56,21 @@ export class CriarViagemPage implements OnInit {
     ];
     const index = inputOrder.indexOf(currentId);
     return index >= 0 && index < inputOrder.length - 1 ? inputOrder[index + 1] : null;
+
   }
+
+  valor: string = '';
+    formatarMoeda(event: Event) {
+      const input = (event.target as HTMLInputElement);
+      let valor = input.value.replace(/\D/g, '');
+
+      valor = (parseFloat(valor) / 100).toFixed(2);
+      valor = valor.replace('.', ',')
+      valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+      this.valor = 'R$' + valor;
+
+    }
+  
 }
+
