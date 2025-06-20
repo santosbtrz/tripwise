@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
+import { auth, db } from '../../firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+
 @Component({
   selector: 'app-criar-viagem',
   templateUrl: './criar-viagem.page.html',
@@ -12,9 +16,27 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 })
 export class CriarViagemPage implements OnInit {
 
+  nomeUsuario: string = '';
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, 'usuarios', user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          this.nomeUsuario = data['nome'] ? data['nome'].split(' ')[0] : 'Usuário';
+        } else {
+          this.nomeUsuario = 'Usuário';
+        }
+      } else {
+        this.nomeUsuario = 'Usuário';
+      }
+    });
+  }
 
   handleKeyDown(id: string, event: KeyboardEvent) {
     const currentInput = document.getElementById(id) as HTMLInputElement;
@@ -56,21 +78,17 @@ export class CriarViagemPage implements OnInit {
     ];
     const index = inputOrder.indexOf(currentId);
     return index >= 0 && index < inputOrder.length - 1 ? inputOrder[index + 1] : null;
-
   }
 
   valor: string = '';
-    formatarMoeda(event: Event) {
-      const input = (event.target as HTMLInputElement);
-      let valor = input.value.replace(/\D/g, '');
+  formatarMoeda(event: Event) {
+    const input = (event.target as HTMLInputElement);
+    let valor = input.value.replace(/\D/g, '');
 
-      valor = (parseFloat(valor) / 100).toFixed(2);
-      valor = valor.replace('.', ',')
-      valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    valor = (parseFloat(valor) / 100).toFixed(2);
+    valor = valor.replace('.', ',');
+    valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-      this.valor = 'R$' + valor;
-
-    }
-  
+    this.valor = 'R$' + valor;
+  }
 }
-

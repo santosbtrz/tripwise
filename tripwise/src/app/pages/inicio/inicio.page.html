@@ -8,12 +8,18 @@
     </div>
   </div>
   <div class="bottom-header">
-      <p>Olá, usuário!</p>
+      <p>Olá, {{ nomeUsuario }}</p>
   </div>
 </div>
 
 <div class="main">
-  
+  <h2>Sem viagens planejadas :c</h2>
+  <img src="../assets/notrip.png" alt="">
+  <div class="main-buttons">
+    <button class="criar-viagem" onclick="location.href='/criar-viagem'">Criar uma viagem</button>
+    <button class="entrar-viagem">Entrar em uma viagem</button>
+  </div>
 </div>
 
 </ion-content>
+
