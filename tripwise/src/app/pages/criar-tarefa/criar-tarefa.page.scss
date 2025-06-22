@@ -4,6 +4,20 @@
   font-family: "Staatliches", sans-serif;
 }
 
+.hr {
+  height: 3px;
+  width: 60%;
+  background: #0194BE;
+  display: block;
+  font-size: 2em;
+  opacity: 1;
+  visibility: visible;
+}
+
+span {
+    text-decoration: underline;
+}
+
 .header {
     margin: 1.5rem 1.5rem 0 1.5rem;
 }
@@ -39,20 +53,24 @@
 .main {
     background-color: #CFFAFF;
     padding-top: .5rem;
-    min-height: 81vh;
+    min-height: 80vh;
 }
 
 .main h1 {
-    display: flex;
-    justify-content: center;
-    color: #0194BE;
+    text-align: center;
     text-decoration: underline;
+    color: #0194BE;
+    letter-spacing: 1px;
+
 }
 
-// FORMS 
+// FORM
 
 .form {
     margin: 1.5rem 1.5rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }   
 
 .form label {
@@ -67,7 +85,7 @@
 .form input {
   width: 100%;
   padding: 18px 12px 18px;
-  font-size: 14px;
+  font-size: 12px;
   border: 3px solid #0194BE;
   border-radius: 12px;
   outline: none;
@@ -77,40 +95,38 @@
   letter-spacing: 1px;
 }
 
+
 ::placeholder {
   color: #0195bea3;
 }
 
-.destino {
-    margin-top: 2rem;
-}
-
-.destino-datas {
+.resp-ctn {
     display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.destino-datas input {
-    text-align: center;
-    font-size: 10px;
     gap: 1rem;
-}
-
-#data-ida, #data-volta {
-    display: flex;
-    gap: .5rem;
-}
-
-.orcamento-ctn {
-    margin-top: 2rem;
-}
-
-
-.container {
-    font-size: 14px !important;
-    text-decoration: none !important;
     margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.resp-ctn img {
+    width: 60px;
+    height: 60px;
+}
+
+.pessoas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem;
+}
+
+.pessoas p {
+    margin: 0;
+    color: #0194BE;
+}
+
+.selected {
+    border: 2px dashed #00ade7b4;
+
 }
 
 input[type=checkbox] {
@@ -127,62 +143,21 @@ input[type=checkbox] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1.5rem;
     margin-top: 2rem;
-    padding-bottom: 1rem;
 }
 
-.gerar-viagem {
+.buttons button {
+    width: 280px;
+    padding: 20px;
+    border-radius: 8px;
     background-color: #0194BE;
-    color: #CFFAFF;
-    padding: 1.5rem;
-    border-radius: 10px;
-    width: 70%;
-    font-size: 18px;
-    letter-spacing: 2px;
+    color: white;
+    font-size: 22px;
     text-decoration: underline;
+    letter-spacing: 1px;
 }
 
-hr {
-  height: 1.5px;
-  width: 50%;
-  background: #0194BE;
-  display: block;
-  font-size: 2em;
-  opacity: 1;
-  visibility: visible;
-}
-
-a {
-    color: #0194BE;
-    font-size: 18px;
-}
-
-.destino {
-  position: relative;
-}
-
-/* Lista suspensa das sugestões */
-.lista-sugestoes {
-  position: absolute;
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-top: 4px;
-  padding: 0;
-  list-style: none;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Cada item da lista */
-.item-sugestao {
-  padding: 12px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  border-bottom: 1px solid #eee;
+.buttons a {
+    font-size: 22px;
 }

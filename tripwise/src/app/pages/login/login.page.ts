@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-config';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, LoadingController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,11 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private loadingCtrl: LoadingController 
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
@@ -28,11 +32,24 @@ export class LoginPage implements OnInit {
 
   async login() {
     this.errorMessage = '';
+
     const email = this.loginForm.value.email;
     const senha = this.loginForm.value.senha;
 
+    const loading = await this.loadingCtrl.create({
+      message: '',
+      spinner: 'crescent',
+      cssClass: 'custom-loading'
+    });
+
+    await loading.present(); 
+
     try {
       await signInWithEmailAndPassword(auth, email, senha);
+
+
+      (document.activeElement as HTMLElement)?.blur();
+
       this.router.navigate(['/inicio']);
     } catch (error: any) {
       if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
@@ -42,6 +59,8 @@ export class LoginPage implements OnInit {
       } else {
         this.errorMessage = 'Erro ao fazer login. Tente novamente.';
       }
+    } finally {
+      await loading.dismiss(); 
     }
   }
 }

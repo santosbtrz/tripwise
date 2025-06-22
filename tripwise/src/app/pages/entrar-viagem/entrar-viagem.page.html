@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+<div class="header">
+  <div class="top-header">
+  <img src="../assets/Logo.png" alt="" class="logo">
+    <div class="icons">
+      <img src="../assets/config.png" alt="" class="config">
+      <img src="../assets/notification.png" alt="" class="notification">
+    </div>
+  </div>
+  <div class="bottom-header">
+      <p>Olá, {{ nomeUsuario }}</p>
+  </div>
+</div>
+
+<div class="main">
+  <div class="titulo-main">
+    <h2>Entrar em uma viagem</h2>
+  </div>
+
+  <div class="codigo">
+    <h2>CÓDIGO</h2>
+
+    <div class="codigo-inputs">
+      <input maxlength="1" [(ngModel)]="codigo[0]" (input)="moverFoco($event, 0)">
+      <input maxlength="1" [(ngModel)]="codigo[1]" (input)="moverFoco($event, 1)">
+      <input maxlength="1" [(ngModel)]="codigo[2]" (input)="moverFoco($event, 2)">
+      <input maxlength="1" [(ngModel)]="codigo[3]" (input)="moverFoco($event, 3)">
+      <input maxlength="1" [(ngModel)]="codigo[4]" (input)="moverFoco($event, 4)">
+    </div>
+
+    <p>peça o código ao autor da viagem e insira aqui!</p>
+
+    <div class="buttons">
+      <button (click)="entrarNaViagem()">Entrar na viagem</button>
+      <div class="hr"></div>
+      <a (click)="cancelar()">Cancelar</a>
+    </div>
+
+  </div>
+</div>
+</ion-content>

@@ -40,5 +40,21 @@ export const routes: Routes = [
     path: 'viagem-criada',
     loadComponent: () => import('./pages/viagem-criada/viagem-criada.page').then( m => m.ViagemCriadaPage)
   },
+  {
+    path: 'entrar-viagem',
+    loadComponent: () => import('./pages/entrar-viagem/entrar-viagem.page').then( m => m.EntrarViagemPage)
+  },
+  {
+    path: 'criar-tarefa',
+    loadComponent: () => import('./pages/criar-tarefa/criar-tarefa.page').then( m => m.CriarTarefaPage)
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
+  },
+  {
+    path: 'roteiro-modal',
+    loadComponent: () => import('./pages/roteiro-modal/roteiro-modal.page').then( m => m.RoteiroModalPage)
+  },
 
 ];

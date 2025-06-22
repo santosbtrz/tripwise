@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true">
+<div class="header">
+  <div class="top-header">
+  <img src="../assets/Logo.png" alt="" class="logo">
+    <div class="icons">
+      <img src="../assets/config.png" alt="" class="config">
+      <img src="../assets/notification.png" alt="" class="notification">
+    </div>
+  </div>
+  <div class="bottom-header">
+      <p>Olá, {{ nomeUsuario }}</p>
+  </div>
+</div>
+
+<div class="main">
+    <h1>Criar uma tarefa</h1>
+    <div class="form">
+
+      <div class="tarefas">
+        <label for="tarefa">Qual o título da tarefa?*</label>
+        <input type="text" id="tarefa" [(ngModel)]="tituloTarefa" placeholder="ex.: reservar hotel, comprar passagens, alugar carro...">
+
+      </div>
+
+<div class="responsavel">
+  <label>Responsável*</label>
+  <div class="resp-ctn">
+    <div *ngFor="let pessoa of pessoas"
+        (click)="selecionarResponsavel(pessoa.uid)"
+        [class.selected]="responsavelSelecionado === pessoa.uid" class="pessoas">
+      <img src="../assets/profile-icon.png" alt="Foto {{pessoa.nome}}" width="32" height="32" />
+      <p>{{ pessoa.nome }}</p>
+    </div>
+  </div>
+</div>
+
+      <div class="prazo-conclusao">
+        <label for="prazo">prazo para conclusão*</label>
+        <input
+          type="text"
+          maxlength="10"
+          [value]="dataFormatada"
+          (input)="formatarData($event)"
+          placeholder="dd/mm/aaaa"
+        />
+
+        <div class="checkbox-ctn">
+          <label for="prioridade-check" class="container">
+            <input type="checkbox" id="prioridade-check" [(ngModel)]="prioridadeAlta">
+            Esta é uma tarefa com <span>prioridade alta</span>
+          </label>
+        </div>
+        
+        </div>
+
+      </div>
+
+    <div class="buttons">
+      <button class="gerar-tarefa" (click)="salvarTarefa()">Criar tarefa</button>
+      <div class="hr"></div>
+      <a (click)="irParaInicio()">Cancelar</a>
+    </div>
+
+    </div>
+
+</ion-content>
+

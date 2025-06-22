@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, LoadingController } from '@ionic/angular/standalone';
 import { cadastrarUsuario } from '../../services/auth-service';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class SignupPage implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loadingCtrl: LoadingController) {}
 
   nome = '';
   nascimento = '';
@@ -91,6 +91,25 @@ async cadastrar() {
     alert('Erro ao cadastrar: ' + erro.message);
   }
 }
+
+  async abrirLoadingENavegar(destino: string, duracao: number = 300) {
+  const loading = await this.loadingCtrl.create({
+    message: '',
+    spinner: 'crescent',
+    cssClass: 'custom-loading'
+  });
+
+  await loading.present();
+
+  setTimeout(() => {
+    this.router.navigate([destino]).then(() => loading.dismiss());
+  }, duracao);
+}
+
+  async voltarParaLanding() {
+    await this.abrirLoadingENavegar('/landing', 200);
+  }
+
 
 
 }

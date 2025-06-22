@@ -1,0 +1,53 @@
+<!-- Cabeçalho e clima SEMPRE visíveis -->
+<div class="modal-wrapper popup-modal">
+  <div class="roteiro-header">
+    <h2>{{ data }}</h2>
+    <button (click)="fecharModal()">×</button>
+  </div>
+
+  <div class="roteiro-clima">
+    <p>{{ clima }}</p>
+  </div>
+
+<div class="modal-content">
+  <!-- Se houver atividades, mostra a lista -->
+  <div *ngIf="atividades.length > 0 && !mostrarFormularioAtividade">
+    <div *ngFor="let atividade of atividades" class="atividade">
+      <p><strong>{{ atividade.hora }}</strong> - {{ atividade.nome }}</p>
+
+      <button 
+        *ngIf="modoRemocaoAtivado" 
+        (click)="removerAtividade(atividade.id)" 
+        class="icone-lixeira"
+      >
+        <img src="../assets/lixeira-icon.png" alt="">
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarFormularioAtividade" class="form-atividade">
+    <label for="nomeAtividade">Nome da atividade</label>
+    <input [(ngModel)]="nomeAtividade" class="nomeAtividade" type="text" placeholder="ex.: visita ao museu, almoço no hotel" />
+
+    <label for="horaAtividade">Hora da atividade</label>
+    <input [(ngModel)]="horaAtividade" class="horaAtividade" type="time" />
+    <div class="atividades-btn">
+      <button (click)="salvarAtividade()" class="btnSalvar">Salvar</button>
+      <button (click)="cancelarFormulario()" class="btnCancelar">Cancelar</button>
+    </div>
+  </div>
+
+  <div *ngIf="atividades.length === 0 && !mostrarFormularioAtividade" class="sem-atividades">
+    <p>Nenhuma atividade para este dia.</p>
+    <button *ngIf="!mostrarFormularioAtividade" class="add-tarefa" (click)="criarTarefa()">Adicionar atividade</button>
+  </div>
+</div>
+
+<div class="button-tarefas" *ngIf="atividades.length > 0 && !mostrarFormularioAtividade"> 
+  <button class="add-tarefa" (click)="criarTarefa()">Adicionar tarefa</button>
+  <button class="rem-tarefa" (click)="alternarModoRemocao()">
+    {{ modoRemocaoAtivado ? 'Cancelar' : 'Remover tarefa' }}
+  </button>
+</div>
+
+</div>

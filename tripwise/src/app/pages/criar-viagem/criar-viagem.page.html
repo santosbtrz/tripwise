@@ -1,67 +1,91 @@
 <ion-content [fullscreen]="true">
-<div class="header">
-  <div class="top-header">
-  <img src="../assets/Logo.png" alt="" class="logo">
-    <div class="icons">
-      <img src="../assets/config.png" alt="" class="config">
-      <img src="../assets/notification.png" alt="" class="notification">
+  <div class="header">
+    <div class="top-header">
+      <img src="../assets/Logo.png" alt="" class="logo">
+      <div class="icons">
+        <img src="../assets/config.png" alt="" class="config">
+        <img src="../assets/notification.png" alt="" class="notification">
+      </div>
+    </div>
+    <div class="bottom-header">
+      <p>Olá, {{ nomeUsuario }}</p>
     </div>
   </div>
-  <div class="bottom-header">
-      <p>Olá, {{ nomeUsuario }}</p>
-  </div>
+
+  <div class="main">
+    <h1>Criar uma viagem</h1>
+    <div class="form">
+      <label for="viagem">Qual o nome da viagem?*</label>
+      <input type="text" id="viagem" [(ngModel)]="viagem" placeholder="ex.: férias em família, viagem à trabalho.">
+
+<div class="destino">
+  <label for="destino">Destino*</label>
+  <input
+    type="text"
+    id="destino"
+    [(ngModel)]="destino"
+    placeholder="para onde vai viajar?"
+    (input)="buscarDestino($event)"
+    autocomplete="off"
+    autocorrect="off"
+    spellcheck="false"
+  >
+
+  <!-- Lista simples de sugestões abaixo do input -->
+  <ul *ngIf="destinosSugeridos.length > 0" class="lista-sugestoes">
+    <li
+      *ngFor="let item of destinosSugeridos"
+      (click)="selecionarDestino(item.value)"
+      class="item-sugestao"
+    >
+      {{ item.display }}
+    </li>
+  </ul>
 </div>
 
-<div class="main">
-  <h1>Criar uma viagem</h1>
-  <div class="form">
-    <label for="viagem">Qual o nome da viagem?*</label>
-    <input type="text" id="viagem" placeholder="ex.: férias em família, viagem à trabalho.">
 
-    <div class="destino">
-      <label for="destino">Destino*</label>
-      <input type="text" id="destino" placeholder="para onde vai viajar?">
-      </div>
       <div class="destino-datas">
         <div class="ida">
           <label for="data-ida">Ida</label>
           <span id="data-ida">
-            <input type="text" id="dia-ida" placeholder="DD" maxlength="2" class="input-ida" (keydown)="handleKeyDown('dia-ida', $event)">
-            <input type="text" id="mes-ida" placeholder="MM" maxlength="2" class="input-ida" (keydown)="handleKeyDown('mes-ida', $event)">
-            <input type="text" id="ano-ida" placeholder="AAAA" maxlength="4" class="input-ida" (keydown)="handleKeyDown('ano-ida', $event)">
+            <input type="text" id="dia-ida" [(ngModel)]="diaIda" placeholder="DD" maxlength="2" class="input-ida" (keydown)="handleKeyDown('dia-ida', $event)">
+            <input type="text" id="mes-ida" [(ngModel)]="mesIda" placeholder="MM" maxlength="2" class="input-ida" (keydown)="handleKeyDown('mes-ida', $event)">
+            <input type="text" id="ano-ida" [(ngModel)]="anoIda" placeholder="AAAA" maxlength="4" class="input-ida" (keydown)="handleKeyDown('ano-ida', $event)">
           </span>
         </div>
 
+        <div class="volta">
+          <label for="data-volta">Volta</label>
+          <span id="data-volta">
+            <input type="text" id="dia-volta" [(ngModel)]="diaVolta" placeholder="DD" maxlength="2" class="input-volta" (keydown)="handleKeyDown('dia-volta', $event)">
+            <input type="text" id="mes-volta" [(ngModel)]="mesVolta" placeholder="MM" maxlength="2" class="input-volta" (keydown)="handleKeyDown('mes-volta', $event)">
+            <input type="text" id="ano-volta" [(ngModel)]="anoVolta" placeholder="AAAA" maxlength="4" class="input-volta" (keydown)="handleKeyDown('ano-volta', $event)">
+          </span>
+        </div>
+      </div>
 
-      <div class="volta">
-        <label for="data-volta">Volta</label>
-      <span id="data-volta">
-          <input type="text" id="dia-volta" placeholder="DD" maxlength="2" class="input-volta" (keydown)="handleKeyDown('dia-volta', $event)">
-          <input type="text" id="mes-volta" placeholder="MM" maxlength="2" class="input-volta" (keydown)="handleKeyDown('mes-volta', $event)">
-          <input type="text" id="ano-volta" placeholder="AAAA" maxlength="4" class="input-volta" (keydown)="handleKeyDown('ano-volta', $event)">
-        </span>
+      <div class="orcamento-ctn">
+        <label for="orcamento">Orçamento</label>
+        <input
+          type="text"
+          id="orcamento"
+          [(ngModel)]="orcamento"
+          (input)="formatarMoeda($event)"
+          placeholder="Qual seu orçamento para essa viagem? (opcional)">
+        <div class="checkbox-ctn">
+          <label for="orcamento-check" class="container">
+            <input type="checkbox" id="orcamento-check" [(ngModel)]="ocultarOrcamento">
+            Ocultar orçamento para o restante do grupo
+          </label>
+        </div>
       </div>
     </div>
 
-
-    <div class="orcamento-ctn">
-      <label for="orcamento">Orçamento</label>
-      <input type="text" id="viagem" ioninput="formatarMoeda(this)" placeholder="Qual seu orçamento para essa viagem? (opcional)" >
-      <div class="checkbox-ctn">
-        <label for="orcamento-check" class="container">
-          <input type="checkbox" id="orcamento-check">
-          Ocultar orçamento para o restante do grupo
-        </label>
-      </div>
+    <div class="buttons">
+      <button class="gerar-viagem" (click)="salvarViagem()">Salvar viagem</button>
+      <hr>
+      <a (click)="cancelar()">Cancelar</a>
     </div>
   </div>
-  
-  <div class="buttons">
-    <button class="gerar-viagem">Gerar código de grupo</button>
-    <hr>
-    <a href="/inicio">Cancelar</a>
-  </div>
-  
-</div>
-
 </ion-content>
+

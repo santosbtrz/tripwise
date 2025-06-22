@@ -3,7 +3,7 @@
   <div class="top-header">
   <img src="../assets/Logo.png" alt="" class="logo">
     <div class="icons">
-      <img src="../assets/config.png" alt="" class="config">
+      <img src="../assets/config.png" alt="" class="config" (click)="abrirConfiguracoes()">
       <img src="../assets/notification.png" alt="" class="notification">
     </div>
   </div>
@@ -12,14 +12,138 @@
   </div>
 </div>
 
-<div class="main">
-  <h2>Sem viagens planejadas :c</h2>
-  <img src="../assets/notrip.png" alt="">
-  <div class="main-buttons">
-    <button class="criar-viagem" onclick="location.href='/criar-viagem'">Criar uma viagem</button>
-    <button class="entrar-viagem">Entrar em uma viagem</button>
+<div  class="main">
+  <div class="sem-viagens" *ngIf="viagens.length === 0">
+    <h2>Sem viagens planejadas :c</h2>
+    <img src="../assets/notrip.png" alt="">
+    <div class="main-buttons">
+      <button class="criar-viagem" onclick="location.href='/criar-viagem'">Criar uma viagem</button>
+      <button class="entrar-viagem" onclick="location.href='/entrar-viagem'">Entrar em uma viagem</button>
+    </div>
   </div>
+
+  <div *ngFor="let viagem of viagens" class="card-viagem">
+    <div class="card-header">
+      <div class="title-datas">
+        <h3>{{ viagem.nomeViagem }}</h3>
+      <p>{{ formatarDataCompleta(viagem.dataIda) }} - {{ formatarDataCompleta(viagem.dataVolta) }}</p>
+
+      </div>
+      <div class="title-destino">
+        <p>{{ viagem.destino }}</p>
+      </div>
+    </div>
+
+    <div class="ctn-pessoas">
+      <div *ngFor="let pessoa of viagem.pessoas" class="pessoas">
+        <div class="pessoa">
+          <img src="../assets/profile-icon.png" alt="">
+          <p>{{ pessoa.nome }}</p>
+        </div>
+      </div>
+    </div>
+    
+
+      <div *ngIf="viagem.mostrarDetalhes" class="detalhes">
+        <div class="codigo-viagem">
+          <p>Código da viagem: {{ viagem.codigoCompartilhamento }}</p>
+        </div>
+        <div class="roteiro-title">
+          <h2>ROTEIROS</h2>
+        </div>
+        <div class="roteiros">
+
+        <div class="card-roteiro" *ngFor="let dia of gerarRoteiro(viagem)">
+          <div class="roteiro-dia" (click)="abrirRoteiro(dia, viagem.id)">
+            <p class="dia">{{ dia.dia }}</p>
+            <p>{{ dia.nomeDia }}</p>
+          </div>
+        </div>
+
+        </div>
+
+        <div class="card-tarefas">
+          <h3>Lista de tarefas</h3>
+          <div *ngIf="tarefas.length === 0" class="sem-tarefas">
+            <p>Não há tarefas nesta viagem.</p>
+          <button (click)="CriarTarefa(viagem.id)">Criar nova tarefa</button> 
+          </div>
+
+          <div *ngFor="let tarefa of tarefas" class="container-tarefa"   [ngStyle]="{
+    'background-color': tarefa.status === 'concluída'
+      ? 'rgba(28, 157, 78, 0.69)'
+      : (tarefa.prioridadeAlta
+          ? 'rgba(1, 77, 190, 0.7)'
+          : 'rgba(1, 148, 190, 0.7)')
+  }">
+            <div  class="tarefa"  >
+                <div class="pessoa-tarefa">
+                  <img src="../assets/profile-icon-alt.png" alt="Foto responsável">
+                  <p>{{ tarefa.nomeResponsavel }}</p>
+                </div>
+
+                <div class="info-tarefa">
+                  <h4>{{ tarefa.titulo }}</h4>
+                  <div class="detalhes-tarefa">
+                    <p>até {{ tarefa.dataPrazo | date:'dd/MM/yyyy' }}</p>
+                    <p>status: {{ tarefa.status || 'pendente' }}</p>
+                  </div>
+                </div>
+
+                <div class="prioridade-tarefa">
+                  <p *ngIf="tarefa.prioridadeAlta; else prioridadeBaixa">prioridade alta</p>
+                  <ng-template #prioridadeBaixa><p>prioridade baixa</p></ng-template>
+                </div>
+
+            </div>
+
+          <div class="acoes-tarefa" *ngIf="tarefa.mostrarOpcoes">
+            <button (click)="excluirTarefa(tarefa, viagem.id)" class="excluir-tarefa">Excluir tarefa</button>
+            <button (click)="concluirTarefa(tarefa, viagem.id)" class="concluir-tarefa"  *ngIf="tarefa.status !== 'concluída'">Concluir tarefa</button>
+          </div>
+          <button (click)="tarefa.mostrarOpcoes = !tarefa.mostrarOpcoes" class="mostrar-opcoes">
+              {{ tarefa.mostrarOpcoes ? 'Ocultar opções' : 'Mostrar opções' }}
+          </button>
+        </div>
+      </div>
+        
+
+        <div class="criar-tarefa-btn">
+          <button (click)="CriarTarefa(viagem.id)" *ngIf="tarefas.length > 0">Criar nova tarefa</button> 
+        </div>
+
+
+        <div class="apagar-viagem">
+          <button (click)="apagarViagem(viagem.id)">Apagar viagem</button>
+        </div>
+
+
+        
+        </div>
+    
+
+    <div class="card-detalhes">
+      <button (click)="toggleDetalhes(viagem.id)">
+          {{ viagem.mostrarDetalhes ? 'Ocultar detalhes' : 'Ver detalhes' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="sem-outras-viagens" *ngIf="viagens.length > 0">
+    <div class="hr"></div>
+    <h2>Sem outras viagens planejadas :c</h2>
+    <img src="../assets/notrip.png" alt="">
+    <div class="main-buttons">
+      <button class="criar-viagem" (click)="irParaCriarViagem()">Criar uma viagem</button>
+      <button class="entrar-viagem" (click)="irParaEntrarViagem()">Entrar em uma viagem</button>
+
+    </div>
+    
+  </div>
+
+
 </div>
+
 
 </ion-content>
 

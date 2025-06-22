@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+  font-family: "Staatliches", sans-serif;
+}
+
+.hr {
+  height: 3px;
+  width: 60%;
+  background: #0194BE;
+  display: block;
+  font-size: 2em;
+  opacity: 1;
+  visibility: visible;
+}
+ 
+// header
+
+.header {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+.config, .notification {
+    width: 35px;
+}
+
+.bottom-header p {
+    font-size: 22px;
+    margin-top: 1rem;
+    color: #0194BE;
+    letter-spacing: 2px;
+}
+
+// main
+
+.main {
+    background-color: #CFFAFF;
+    padding-top: .5rem;
+    min-height: 81vh;
+}
+
+.titulo-main {
+    display: flex;
+    justify-content: center;
+}
+
+// codigos
+
+.titulo-main {
+    color: #0194BE;
+}
+
+.titulo-main h2 {
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+
+.codigo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.codigo h2 {
+    font-size: 28px;
+    color: #0194BE;
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
+.codigo-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.codigo-inputs input {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: #0194BE;
+  color: white;
+}
+.codigo p {
+    color: #0194BE;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.buttons button {
+    width: 280px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #0194BE;
+    color: white;
+    font-size: 22px;
+    text-decoration: underline;
+    letter-spacing: 1px;
+}
+
+.codigo a {
+    font-size: 20px;
+}

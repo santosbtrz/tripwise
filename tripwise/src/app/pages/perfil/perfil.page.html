@@ -1,0 +1,74 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <div class="top-header">
+      <img src="../assets/Logo.png" alt="" class="logo">
+      <div class="icons">
+        <img src="../assets/config.png" alt="" class="config" (click)="abrirConfiguracoes()">
+        <img src="../assets/notification.png" alt="" class="notification">
+      </div>
+    </div>
+    <div class="bottom-header">
+      <p>Olá, {{ nomeUsuario }}</p>
+    </div>
+  </div>
+
+  <div class="main" *ngIf="userData">
+
+    <div class="profile">
+      <div class="profile-img">
+        <img src="../assets/profile-icon.png" alt="">
+        <p>{{ userData.nome }}</p>
+      </div>
+      <div class="hr"></div>
+
+      <div class="profile-info">
+        <h2>suas informações</h2>
+        <div class="profile-info-content">
+          <label>cpf:
+            <input [(ngModel)]="userData.cpf"
+                  (ngModelChange)="formatarCPF()"
+                  [disabled]="!editarDadosAtivo" />
+          </label>
+          <label>celular:
+            <input [(ngModel)]="userData.telefone"
+                  (ngModelChange)="formatarTelefone()"
+                  [disabled]="!editarDadosAtivo" />
+          </label>
+          <label>e-mail: <input [(ngModel)]="userData.email" [disabled]="!editarDadosAtivo" /></label>
+          <label>data de nascimento: <input [(ngModel)]="userData.nascimento" type="date" [disabled]="!editarDadosAtivo" /></label>
+        </div>
+        <div class="edicao-btn">
+          <button (click)="editarDadosAtivo ? salvarAlteracoes() : ativarEdicao()">
+            {{ editarDadosAtivo ? 'Salvar alterações' : 'Alterar dados' }}
+          </button>
+
+          <button *ngIf="editarDadosAtivo" (click)="cancelarEdicao()" class="btn-cancelar">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostrarFormAlterarSenha" class="form-alterar-senha">
+      <h2>ALTERAR SENHA</h2>
+      <div class="inputs-senha">
+        <label>Senha atual:
+          <input type="password" [(ngModel)]="senhaAtual" />
+        </label>
+        <label>Nova senha:
+          <input type="password" [(ngModel)]="novaSenha" />
+        </label>
+      </div>
+      <div class="alterar-buttons">
+        <button (click)="alterarSenha()" class="confirmar-senha-btn">Confirmar alteração</button>
+        <button (click)="cancelarAlteracaoSenha()" class="cancelar-btn">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="profile-buttons">
+      <button class="alterar-senha" (click)="mostrarFormAlterarSenha = true">Alterar senha</button>
+      <button class="excluir-conta" (click)="excluirConta()">excluir conta</button>
+    </div>
+
+  </div>
+</ion-content>

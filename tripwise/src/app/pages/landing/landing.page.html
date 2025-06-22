@@ -5,11 +5,11 @@
     <h1 class="subtitle">seu planejador de viagens em grupo!</h1>
   </div>
   <div class="login-signup">
-    <button onclick="location.href='/signup'" class="signup-button">
+    <button (click)="irParaCadastro()" class="signup-button">
       Cadastre-se
     </button>
     <hr>
-    <a href="/login" class="login-link">
+    <a (click)="irParaLogin()" class="login-link">
         Já possuo uma conta
     </a>
   </div>

@@ -8,22 +8,45 @@
     </div>
   </div>
   <div class="bottom-header">
-      <p>Olá, usuário!</p>
+      <p>Olá, {{ nomeUsuario }}</p>
   </div>
 </div>
 
 <div class="main">
   <div class="viagem-criada">
-    <h1>NOME DA VIAGEM</h1>
+    <h1>{{ viagem.nomeViagem }}</h1>
     <h2>viagem criada com sucesso!</h2>
   </div>
 
   <div class="enviar-codigo">
     <p>enviar por</p>
     <div class="icones">
-      <img src="" alt="">
-      <img src="" alt="">
-      <img src="" alt="">
+      <img src="../assets/whatsapp-icon.png" alt="">
+      <img src="../assets/messenger-icon.png" alt="">
+      <img src="../assets/telegram-icon.png" alt="">
     </div>
+
+  <div class="codigos">
+    <h2>CÓDIGO</h2>
+    <div class="codigo-container">
+      <div *ngFor="let char of viagem.codigoCompartilhamento.split('')" class="codigo-box">
+        {{ char }}
+      </div>
+    </div>
+    <div class="codigo-qr">
+        <img
+          [src]="'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + viagem.codigoCompartilhamento"
+          alt="QR Code"
+        />
+    </div>
+    <p>os convidados devem realizar o registro no app para serem incluídos na viagem!</p>
+    <div class="hr"></div>
+  </div>
+
+  <div class="botao-voltar">
+    <button onclick="location.href='/inicio'">Voltar ao início</button>
+  </div>
     
   </div>
+</div>
+</ion-content>
