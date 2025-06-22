@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <div class="top-header">
+      <img src="../assets/Logo.png" alt="" class="logo">
+      <div class="icons">
+        <img src="../assets/config.png" alt="" class="config" (click)="abrirConfiguracoes()">
+        <img src="../assets/notification.png" alt="" class="notification">
+      </div>
+    </div>
+    <div class="bottom-header">
+      <p>Olá, {{ nomeUsuario }}</p>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="sobre">
+      <h2>Desenvolvedoras do TripWise</h2>
+      <div class="devs">
+        <div class="dev">
+          <div class="pessoa-img">
+            <img src="../assets/profile-bea.jpeg" alt="">
+          </div>
+          <p>Beatriz Santos de Souza</p>
+        </div>
+
+        <div class="dev">
+          <div class="pessoa-img">
+            <img src="../assets/profile-isa.jpeg" alt="">
+          </div>
+          <p>Isabelle C. N. Rodrigues</p>
+        </div>
+
+        <div class="dev">
+          <div class="pessoa-img">
+            <img src="../assets/profile-lari.jpeg" alt="">
+          </div>
+          <p>Larissa Almeida do Nascimento</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

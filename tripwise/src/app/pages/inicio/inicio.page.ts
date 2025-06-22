@@ -321,40 +321,47 @@ ngOnInit() {
     toast.present();
   }
 
-  async abrirConfiguracoes() {
-    const isPerfil = this.router.url.includes('/perfil');
+async abrirConfiguracoes() {
+  const isPerfil = this.router.url.includes('/perfil');
 
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Configurações',
-      buttons: [
-        {
-          text: isPerfil ? 'Voltar ao Início' : 'Ver Perfil',
-          handler: () => {
-            if (isPerfil) {
-              this.router.navigate(['/inicio']);
-            } else {
-              this.router.navigate(['/perfil']);
-            }
+  const actionSheet = await this.actionSheetCtrl.create({
+    header: 'Configurações',
+    buttons: [
+      {
+        text: isPerfil ? 'Voltar ao Início' : 'Ver Perfil',
+        handler: () => {
+          if (isPerfil) {
+            this.router.navigate(['/inicio']);
+          } else {
+            this.router.navigate(['/perfil']);
           }
-        },
-        {
-          text: 'Sair',
-          role: 'destructive',
-          handler: () => {
-            signOut(auth).then(() => {
-              this.router.navigate(['/landing']);
-            });
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel'
         }
-      ]
-    });
+      },
+      {
+        text: 'Sair',
+        role: 'destructive',
+        handler: () => {
+          signOut(auth).then(() => {
+            this.router.navigate(['/landing']);
+          });
+        }
+      },
+      {
+        text: 'Sobre o app',
+        handler: () => {
+          this.router.navigate(['/sobre']);
+        }
+      },
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      }
+    ]
+  });
 
-    await actionSheet.present();
-  }
+  await actionSheet.present();
+}
+
 
   async abrirRoteiro(dia: { data: string; dia: string; nomeDia: string }, viagemId: string) {
     const user = auth.currentUser;

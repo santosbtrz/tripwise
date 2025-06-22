@@ -56,5 +56,9 @@ export const routes: Routes = [
     path: 'roteiro-modal',
     loadComponent: () => import('./pages/roteiro-modal/roteiro-modal.page').then( m => m.RoteiroModalPage)
   },
+  {
+    path: 'sobre',
+    loadComponent: () => import('./pages/sobre/sobre.page').then( m => m.SobrePage)
+  },
 
 ];

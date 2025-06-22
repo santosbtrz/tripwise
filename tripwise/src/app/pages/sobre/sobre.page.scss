@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+  font-family: "Staatliches", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.hr {
+  height: 4px;
+  width: 80%;
+  background: #0194BE;
+  display: block;
+  font-size: 2em;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 1rem;
+}
+
+.header {
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    background-color: white;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+.config, .notification {
+    width: 40px;
+}
+
+.bottom-header p {
+    font-size: 22px;
+    margin-top: 1rem;
+    color: #0194BE;
+    letter-spacing: 2px;
+}
+
+// main
+
+.main {
+    background-color: #CFFAFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+    min-height: 85vh;
+}
+
+.sobre h2 {
+    text-align: center;
+    color: #0194BE;
+}
+
+.devs {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dev {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: #0194BE;
+    letter-spacing: 1px;
+
+}
+
+.devs img {
+    border-radius: 5px;
+    border: 2px solid #0194BE;
+    object-fit: contain;
+
+
+}
+
+.pessoa-img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
