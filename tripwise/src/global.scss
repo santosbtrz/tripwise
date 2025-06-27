@@ -36,7 +36,17 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 /* @import '@ionic/angular/css/palettes/dark.system.css'; */
 
-@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@font-face {
+  font-family: 'Staatliches';
+  src: url('/assets/fonts/staatliches.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Staatliches', sans-serif;
+}
+
 
 
 ion-modal.popup-modal {
@@ -102,4 +112,8 @@ ion-modal.popup-modal .modal-wrapper {
     padding: 1rem;
     border-radius: 5px;
     letter-spacing: 1px;
+}
+
+.config, .notification {
+    width: 30px !important;
 }

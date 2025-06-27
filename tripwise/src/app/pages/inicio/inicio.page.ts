@@ -48,7 +48,7 @@ export class InicioPage implements OnInit {
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController // ✅ Adicionado
+    private loadingCtrl: LoadingController
   ) {}
 
 ngOnInit() {
@@ -76,14 +76,12 @@ ngOnInit() {
             id: doc.id,
             ...viagemData,
             mostrarDetalhes: false,
-            pessoas: [] // será preenchido abaixo
+            pessoas: [] 
           };
         });
 
-        // Para cada viagem, carrega e combina as pessoas do documento + subcoleção
         this.viagens.forEach(async (viagem, index) => {
           try {
-            // Documento global da viagem
             const viagemDocRef = doc(db, 'viagens', viagem.id);
             const viagemDocSnap = await getDoc(viagemDocRef);
 
@@ -92,10 +90,8 @@ ngOnInit() {
             if (viagemDocSnap.exists()) {
               const viagemData = viagemDocSnap.data();
 
-              // Pessoas do array no documento da viagem (inclui criador)
               const pessoasDoc = viagemData?.['pessoas'] || [];
 
-              // Pessoas na subcoleção 'pessoas'
               const pessoasRef = collection(db, 'viagens', viagem.id, 'pessoas');
               const pessoasSnap = await getDocs(pessoasRef);
 
@@ -108,7 +104,6 @@ ngOnInit() {
                 };
               });
 
-              // Combina os arrays removendo duplicatas pelo id
               const mapIds = new Map<string, any>();
 
               pessoasDoc.forEach((p: any) => {
@@ -130,7 +125,6 @@ ngOnInit() {
               pessoasArray = Array.from(mapIds.values());
             }
 
-            // Atualiza pessoas da viagem para atualizar template
             this.viagens[index].pessoas = pessoasArray;
           } catch (err) {
             console.error('Erro ao carregar pessoas da viagem:', err);

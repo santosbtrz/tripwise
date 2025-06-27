@@ -1,4 +1,3 @@
-<!-- Cabeçalho e clima SEMPRE visíveis -->
 <div class="modal-wrapper popup-modal">
   <div class="roteiro-header">
     <h2>{{ data }}</h2>
@@ -10,7 +9,6 @@
   </div>
 
 <div class="modal-content">
-  <!-- Se houver atividades, mostra a lista -->
   <div *ngIf="atividades.length > 0 && !mostrarFormularioAtividade">
     <div *ngFor="let atividade of atividades" class="atividade">
       <p><strong>{{ atividade.hora }}</strong> - {{ atividade.nome }}</p>
