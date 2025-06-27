@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
-import { ToastController, AlertController} from '@ionic/angular';
-
+import { ToastController, AlertController, IonicModule } from '@ionic/angular';
 
 interface Atividade {
   id: string;
@@ -23,15 +22,15 @@ interface Atividade {
   templateUrl: './roteiro-modal.page.html',
   styleUrls: ['./roteiro-modal.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [CommonModule, FormsModule, IonicModule],
 })
 export class RoteiroModalPage implements OnInit {
-  data: string = '';
-  clima: string = '';
-  atividades: Atividade[] = [];
-  dataRaw: string = '';
-  viagemId: string = '';
+  @Input() data: string = '';
+  @Input() clima: string = '';
+  @Input() atividades: Atividade[] = [];
+  @Input() dataRaw: string = '';
+  @Input() viagemId: string = '';
+
   mostrarFormularioAtividade = false;
   nomeAtividade: string = '';
   horaAtividade: string = '';
@@ -41,20 +40,13 @@ export class RoteiroModalPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private router: Router,
-    private navParams: NavParams,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController 
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
-    this.data = this.navParams.get('data') || '';
-    this.clima = this.navParams.get('clima') || '';
-    this.dataRaw = this.navParams.get('dataRaw') || '';
-    this.viagemId = this.navParams.get('viagemId') || '';
-    this.atividades = [];
-
     const user = auth.currentUser;
-    if(user){
+    if (user) {
       this.userId = user.uid;
       this.carregarAtividades();
     }
@@ -65,7 +57,7 @@ export class RoteiroModalPage implements OnInit {
   }
 
   criarTarefa() {
-     this.mostrarFormularioAtividade = true;
+    this.mostrarFormularioAtividade = true;
   }
 
   async salvarAtividade() {
@@ -147,43 +139,42 @@ export class RoteiroModalPage implements OnInit {
     this.modoRemocaoAtivado = !this.modoRemocaoAtivado;
   }
 
-async removerAtividade(idAtividade: string) {
-  const alert = await this.alertCtrl.create({
-    header: 'Confirmação',
-    message: 'Tem certeza que deseja remover esta atividade?',
-    buttons: [
-      {
-        text: 'Cancelar',
-        role: 'cancel'
-      },
-      {
-        text: 'Remover',
-        handler: async () => {
-          try {
-            const atividadeRef = doc(
-              db,
-              'usuarios',
-              this.userId,
-              'viagens',
-              this.viagemId,
-              'atividades',
-              idAtividade
-            );
+  async removerAtividade(idAtividade: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmação',
+      message: 'Tem certeza que deseja remover esta atividade?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Remover',
+          handler: async () => {
+            try {
+              const atividadeRef = doc(
+                db,
+                'usuarios',
+                this.userId,
+                'viagens',
+                this.viagemId,
+                'atividades',
+                idAtividade
+              );
 
-            await deleteDoc(atividadeRef);
+              await deleteDoc(atividadeRef);
 
-            this.atividades = this.atividades.filter((a) => a.id !== idAtividade);
-            this.exibirToast('Atividade removida com sucesso!');
-          } catch (error) {
-            console.error('Erro ao remover atividade:', error);
-            this.exibirToast('Erro ao remover atividade. Tente novamente.');
+              this.atividades = this.atividades.filter((a) => a.id !== idAtividade);
+              this.exibirToast('Atividade removida com sucesso!');
+            } catch (error) {
+              console.error('Erro ao remover atividade:', error);
+              this.exibirToast('Erro ao remover atividade. Tente novamente.');
+            }
           }
         }
-      }
-    ]
-  });
+      ]
+    });
 
-  await alert.present();
-}
-
+    await alert.present();
+  }
 }

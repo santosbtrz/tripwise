@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 
 import { auth, db } from '../../firebase-config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { Firestore ,doc, getDoc, collection, getDocs, updateDoc, deleteDoc, onSnapshot  } from 'firebase/firestore';
+import {doc, getDoc, collection, getDocs, updateDoc, deleteDoc, onSnapshot  } from 'firebase/firestore';
 
 import { eachDayOfInterval, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -316,6 +315,7 @@ ngOnInit() {
   }
 
 async abrirConfiguracoes() {
+  console.log('abrirConfiguracoes chamado');
   const isPerfil = this.router.url.includes('/perfil');
 
   const actionSheet = await this.actionSheetCtrl.create({
@@ -352,12 +352,15 @@ async abrirConfiguracoes() {
       }
     ]
   });
+   console.log('ActionSheet criado');
 
   await actionSheet.present();
+    console.log('ActionSheet apresentado!');
 }
 
 
   async abrirRoteiro(dia: { data: string; dia: string; nomeDia: string }, viagemId: string) {
+     console.log('abrirRoteiro chamado com:', dia, viagemId);
     const user = auth.currentUser;
     if (!user) return;
 
@@ -368,19 +371,23 @@ async abrirConfiguracoes() {
       .map(doc => doc.data())
       .filter(t => t['data'] === dia.data);
 
+  try {
     const modal = await this.modalCtrl.create({
       component: RoteiroModalPage,
       cssClass: 'popup-modal',
       componentProps: {
         data: `${dia.dia} - ${dia.nomeDia}`,
         clima: 'Ensolarado, 27°C',
-        atividades: atividadesDoDia,
         dataRaw: dia.data,
         viagemId: viagemId
       }
     });
-
+    console.log('Modal criado, apresentando...');
     await modal.present();
+    console.log('Modal apresentado!');
+  } catch (error) {
+    console.error('Erro ao apresentar modal:', error);
+  }
   }
 
 async abrirLoadingENavegar(destino: string, duracao: number = 300) {

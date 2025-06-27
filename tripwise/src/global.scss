@@ -38,13 +38,13 @@
 
 @font-face {
   font-family: 'Staatliches';
-  src: url('/assets/fonts/staatliches.ttf') format('truetype');
+  src: url('/assets/fonts/Staatliches.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-body {
-  font-family: 'Staatliches', sans-serif;
+* {
+  font-family: 'Staatliches', sans-serif !important;
 }
 
 
